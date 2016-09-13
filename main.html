@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>WHS RPG</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script>
+            var monsterJSON = {
+                "chatard" :
+                {
+                    "name" : "Brian Chatard",
+                    "type" : "administration-principal",
+                    "room" : "office",
+                    "description" : "Brian Chatard caught you twerking at a dance! What do you do!?",
+                    "moves" :
+                    {
+                        "attend sporting event" : "10:50",
+                        "run the school" : "5:20",
+                        "nothing" : "8:10",
+                        "kick" : "15:30"
+                    },
+                    "responses" :
+                    {
+                        "sorry mom" : "20:40",
+                        "i will not twerk again" : "100:100"
+                    }
+                },
+                "sarah" :
+                {
+                    "name" : "Sarah Mattheisen",
+                    "type" : "administration-secretary",
+                    "room" : "office",
+                    "description" : "You have arrived to school late! What do you do?",
+                    "moves" :
+                    {
+                        "sleeping in is not an excuse" : "10:50",
+                        "you did not get caught in traffic" : "10:50",
+                        "UNEXCUSED!!!!" : "0:50",
+                        "slap" : "10:30"
+                    },
+                    "responses" :
+                    {
+                        "ask for late slip" : "100:100",
+                        "steal late slip" : "-50:50"
+                    }
+                },
+                "monitor" :
+                {
+                    "name" : "Hall Monitor",
+                    "type" : "disciplinary officer",
+                    "room" : "hallway",
+                    "description" : "The hall monitor spots you walking with your phone out! What do you do?",
+                    "moves" :
+                    {
+                        "stern gaze" : "10:30",
+                        "back to class" : "10:30",
+                        "lunch detention" : "30:50",
+                        "punch" : "10:50"
+                    },
+                    "responses" :
+                    {
+                        "put away phone" : "100:100",
+                        "throw phone at monitor" : "5:20"
+                    }
+                },
+                "duchow" :
+                {
+                    "name" : "Micheal Duchow-Pressley",
+                    "type" : "chemistry and AP Physics",
+                    "room" : "chemistry classroom",
+                    "description" : "Duchow approaches you for not having completed your lab.",
+                    "moves" :
+                    {
+                        "aggressive head nod" : "5:20",
+                        "dry humor" : "5:20",
+                        "mole train song" : "10:40",
+                        "TODO TBD" : "x:x"
+                    },
+                    "responses" :
+                    {
+                        "ask for lab extension" : "100:100",
+                        "cry a bit" : "5:10"
+                    }
+                },
+                "francis" :
+                {
+                    "name" : "Francisco",
+                    "type" : "disciplinary officer",
+                    "room" : "study hall",
+                    "description" : "Francisco catches you talking at more than 30 decibels during study hall.",
+                    "moves" :
+                    {
+                        "I'm joking" : "5:20",
+                        "laugh it off" : "5:20",
+                        "football throw" : "10:30",
+                        "body slam" : "10:30"
+                    },
+                    "responses" :
+                    {
+                        "be quiet and study" : "100:100",
+                        "yell aggressively" : "5:20"
+                    }
+                },
+                "bartlo" :
+                {
+                    "name" : "Christopher Bartlo",
+                    "type" : "computer science and math",
+                    "room" : "computer lab",
+                    "description" : "You arrive with an orange in your right and and another orange in your left hand. NO ORANGES!!! reads the sign.",
+                    "moves" :
+                    {
+                        "witty insult" : "20:40",
+                        "recieve grant money" : "5:50",
+                        "throw computer" : "5:20",
+                        "medusa glare" : "10:30",
+                    },
+                    "responses" :
+                    {
+                        "leave class and discard oranges" : "100:100",
+                        "peel oranges and throw at Bartlo" : "40:70"
+                    }
+                },
+                "thor" :
+                {
+                    "name" : "Thor Esbensen",
+                    "type" : "math, xc, and track",
+                    "room" : "the great outdoors",
+                    "description" : "You are leaving the building when you encounter Thor. He inquires as to why you are not headed to practice.",
+                    "moves" :
+                    {
+                        "run away" : "20:40",
+                        "run in general" : "5:20",
+                        "an interesting story" : "5:20",
+                        "throat flick" : "20:40",
+                    },
+                    "responses" :
+                    {
+                        "go to practice" : "100:100",
+                        "steal gummy bears" : "5:30"
+                    }
+                },
+                "rabchuck" :
+                {
+                    "name" : "Alex Rabchuck",
+                    "type" : "math, xl",
+                    "room" : "classroom",
+                    "description" : "You have not completed your mathxl homework and it is due tomorrow!",
+                    "moves" :
+                    {
+                        "helps student after class" : "10:30",
+                        "demands cookies" : "10:30",
+                        "SHH!!!" : "5:20",
+                        "abstract topology" : "20:40"
+                    },
+                    "responses" :
+                    {
+                        "do mathxl" : "100:100",
+                        "pretend to sleep" : "10:30",
+                        "actually sleep" : "5:10"
+                    }
+                },
+                "nolan" :
+                {
+                    "name" : "Mike Nolan",
+                    "type" : "history",
+                    "room" : "classroom",
+                    "description" : "You have not completed the assigned notes!",
+                    "moves" :
+                    {
+                        "enthusiastic lecuture" : "5:20",
+                        "table topic" : "10:30",
+                        "pop quiz" : "20:40",
+                        "spinning roundhouse kick" : "20:40"
+                    },
+                    "responses" :
+                    {
+                        "take notes" : "100:100",
+                        "copy notes" : "10:30"
+                    }
+                },
+                "nohner" :
+                {
+                    "name" : "Nick Nohner",
+                    "type" : "math and computer science",
+                    "room" : "classroom",
+                    "description" : "Nohner catches you playing computer games during class!",
+                    "moves" :
+                    {
+                        "charm" : "5:20",
+                        "soccer ball kick" : "5:20",
+                        "smile" : "10:30",
+                        "slam dunk" : "20:40"
+                    },
+                    "responses" :
+                    {
+                        "turn up the volume" : "10:30",
+                        "stop playing games" : "100:100"
+                    }
+                },
+                "coleman" :
+                {
+                    "name" : "Profe Coleman",
+                    "type" : "language-spanish",
+                    "room" : "classroom",
+                    "description" : "You spoke English during class!!",
+                    "moves" :
+                    {
+                        "stamp homework calendar" : "10:30",
+                        "buenos dias chicos y chicas" : "5:20",
+                        "guest speaker" : "20:40",
+                        "cuchillo" : "10:30"
+                    },
+                    "responses" :
+                    {
+                        "speak spanish" : "100:100",
+                        "spanglish" : "20:40"
+                    }
+                },
+                "olsen" :
+                {
+                    "name" : "Olsen",
+                    "type" : "health and coach",
+                    "room" : "classroom",
+                    "description" : "Olsen sees you starting to open a pudding cup.",
+                    "moves" :
+                    {
+                        "carrot" : "5:20",
+                        "head polish" : "10:30",
+                        "bear hug" : "20:40",
+                        "golf swing" : "10:30"
+                    },
+                    "responses" :
+                    {
+                        "eat that carrot" : "100:100",
+                        "eat that yummy chocolate pudding" : "10:30"
+                    }
+                },
+                "penk" :
+                {
+                    "name" : "George Penk",
+                    "type" : "chemistry",
+                    "room" : "chemistry lab",
+                    "description" : "You drop a beaker full of scary chemicals, Mr. Penk approches you.",
+                    "moves" :
+                    {
+                        "quad snap clap" : "5:20",
+                        "vegetable harvest" : "20:40",
+                        "round up 85" : "10:50",
+                        "liquid nitrogen" : "10:30",
+                    },
+                    "responses" :
+                    {
+                        "clean it up" : "100:100",
+                        "pretend you didn't do it" : "5:20"
+                    }
+                }
+            };
+
+            var roamjects = {
+                "water" :
+                {
+                    "name" : "Water Station",
+                    "description" : "You find a place to get water that does not contain lead.",
+                    "moves" :
+                    {
+                        "get water" : "Nothing like a cone of bottled water!|10:40",
+                        "fill that hydro" : "A hydro is necessary and stuff. That was rejuvenating.|20:60",
+                        "do nothing" : "This isn't the Sahara I suppose"
+                    }
+                },
+                "cafeteria" :
+                {
+                    "name" : "Cafeteria",
+                    "description" : "You enter the cafeteria.",
+                    "moves" :
+                    {
+                        "get some food" : "You eat some nice smelling nachos.",
+                        "grab some oranges" : "\"I wonder what these are for?\n"
+                    }
+                },
+                "find" :
+                {
+                    "name" : "Hallway",
+                    "description" : "You found something!!!",
+                    "moves" :
+                    {
+                        "pick up the hydroflask" : "\"Maybe this will be useful later\"",
+                        "pick up the rotten orange" : "\"Maybe this will be useful later\"",
+                        "eat the bag of food" : "Well that was pretty tasty even though I don't like Flamin' Hot Cheetos.|10:30"
+                    }
+                },
+                "green" :
+                {
+                    "name" : "Green Scene",
+                    "description" : "You encounter the Green Scene, a nice place to get coffee and stuff.",
+                    "moves" :
+                    {
+                        "get coffee" : "How energizing!!!!!!!!|5:40",
+                        "get food" : "Food is nice.|5:40"
+                    }
+                }
+            };
+
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <h2 id="name"></h2>
+        <h3 id="type"></h3>
+        <h3 id="room"></h3>
+        <h4 id="description"></h4>
+        <div id="monsterhealth"></div>
+        <h5 id="status"></h5>
+        <div id="playerhealth"></div>
+        <ul id="options">
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+            <li>Four</li>
+        </ul>
+        <h4 id="response"></h4>
+        <script src="WHSRPG.js"></script>
+    </body>
+</html>

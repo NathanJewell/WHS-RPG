@@ -1,0 +1,44 @@
+{
+    "water" :
+    {
+        "name" : "Water Station",
+        "description" : "You find a place to get water that does not contain lead.",
+        "moves" :
+        {
+            "get water" : "Nothing like a cone of bottled water!|10:40",
+            "fill that hydro" : "A hydro is necessary and stuff. That was rejuvenating.|20:60",
+            "do nothing" : "This isn't the Sahara I suppose"
+        }
+    },
+    "cafeteria" :
+    {
+        "name" : "Cafeteria",
+        "description" : "You enter the cafeteria.",
+        "moves" :
+        {
+            "get some food" : "You eat some nice smelling nachos.",
+            "grab some oranges" : "\"I wonder what these are for?\n"
+        }
+    },
+    "find" :
+    {
+        "name" : "Hallway",
+        "description" : "You found something!!!",
+        "moves" :
+        {
+            "pick up the hydroflask" : "\"Maybe this will be useful later\"",
+            "pick up the rotten orange" : "\"Maybe this will be useful later\"",
+            "eat the bag of food" : "Well that was pretty tasty even though I don't like Flamin' Hot Cheetos.|10:30"
+        }
+    },
+    "green" :
+    {
+        "name" : "Green Scene",
+        "description" : "You encounter the Green Scene, a nice place to get coffee and stuff.",
+        "moves" :
+        {
+            "get coffee" : "How energizing!!!!!!!!|5:40",
+            "get food" : "Food is nice.|5:40"
+        }
+    }
+}
