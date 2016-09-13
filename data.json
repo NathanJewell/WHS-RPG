@@ -4,13 +4,13 @@
         "name" : "Brian Chatard",
         "type" : "administration-principal",
         "room" : "office",
-        "description" : "Brian Chatard caught you twerking at a dance! What do you do!?",
+        "description" : "Brian Chatard caught you twerking at a dance!",
         "moves" :
         {
             "attend sporting event" : "10:50",
             "run the school" : "5:20",
             "nothing" : "8:10",
-            "kick" : "15:30"
+            "call parents" : "15:30"
         },
         "responses" :
         {
@@ -23,13 +23,13 @@
         "name" : "Sarah Mattheisen",
         "type" : "administration-secretary",
         "room" : "office",
-        "description" : "You have arrived to school late! What do you do?",
+        "description" : "You have arrived to school late!",
         "moves" :
         {
             "sleeping in is not an excuse" : "10:50",
             "you did not get caught in traffic" : "10:50",
             "UNEXCUSED!!!!" : "0:50",
-            "slap" : "10:30"
+            "scold" : "10:30"
         },
         "responses" :
         {
@@ -48,7 +48,7 @@
             "stern gaze" : "10:30",
             "back to class" : "10:30",
             "lunch detention" : "30:50",
-            "punch" : "10:50"
+            "referral" : "10:50"
         },
         "responses" :
         {
@@ -67,7 +67,7 @@
             "aggressive head nod" : "5:20",
             "dry humor" : "5:20",
             "mole train song" : "10:40",
-            "TODO TBD" : "x:x"
+            "put on bike helmet" : "10:30"
         },
         "responses" :
         {
