@@ -1,3 +1,69 @@
+@font-face {
+	font-family: roboto-thin;
+	src: url(font/Roboto-Thin.ttf);
+}
+
+@font-face {
+	font-family: roboto;
+	src: url(font/Roboto.ttf);
+}
+
+body {
+	font-family: roboto-thin;
+	color: #d0d0d0;
+	background-color: #303030;
+}
+
+#name {
+	size: 150%;
+	font-family: roboto;
+	color: #00d700;
+}
+
+#type {
+	size: 110%;
+	color: #008700;
+}
+
+#room {
+	size: 120%;
+	color: #d75f00;
+}
+
+#playerhealth {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 150%;
+	font-family: roboto;
+	color: #ff0087;
+}
+
+ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+ul:before {
+	content: "actions:";
+}
+
 li {
-    font-size : 40px;
+	cursor: pointer;
+	font-family: roboto;
+	font-size : 120%;
+	color: #5fff87;
+}
+
+li:before {
+	content: "├ ";
+}
+
+li#first:before {
+	content: "╭ ";
+}
+
+li#last:before {
+	content: "╰ ";
 }
