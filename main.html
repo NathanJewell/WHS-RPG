@@ -73,7 +73,7 @@
                         "aggressive head nod" : "5:20",
                         "dry humor" : "5:20",
                         "mole train song" : "10:40",
-                        "TODO TBD" : "x:x"
+                        "the power of physics" : "10:20"
                     },
                     "responses" :
                     {
@@ -264,7 +264,7 @@
                     {
                         "get water" : "Nothing like a cone of bottled water!|10:40",
                         "fill that hydro" : "A hydro is necessary and stuff. That was rejuvenating.|20:60",
-                        "do nothing" : "This isn't the Sahara I suppose"
+                        "do nothing" : "This isn't the Sahara I suppose|0:0"
                     }
                 },
                 "cafeteria" :
@@ -273,8 +273,8 @@
                     "description" : "You enter the cafeteria.",
                     "moves" :
                     {
-                        "get some food" : "You eat some nice smelling nachos.",
-                        "grab some oranges" : "\"I wonder what these are for?\n"
+                        "get some food" : "You eat some nice smelling nachos.|20:50",
+                        "grab some oranges" : "\"I wonder what these are for?\n|0:0"
                     }
                 },
                 "find" :
@@ -283,8 +283,8 @@
                     "description" : "You found something!!!",
                     "moves" :
                     {
-                        "pick up the hydroflask" : "\"Maybe this will be useful later\"",
-                        "pick up the rotten orange" : "\"Maybe this will be useful later\"",
+                        "pick up the hydroflask" : "\"Maybe this will be useful later\"|0:0",
+                        "pick up the rotten orange" : "\"Maybe this will be useful later\"|0:0",
                         "eat the bag of food" : "Well that was pretty tasty even though I don't like Flamin' Hot Cheetos.|10:30"
                     }
                 },
@@ -300,6 +300,7 @@
                 }
             };
 
+
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
@@ -309,17 +310,19 @@
         <h3 id="type"></h3>
         <h3 id="room"></h3>
         <h4 id="description"></h4>
-        <h4 id="response"></h4>
-        <h4 id="responsem"></h4>
         <h4 id="status"></h4>
         <div id="monsterhealth"></div>
         <div id="playerhealth"></div>
-        <ul id="options">
-            <li id="first">One</li>
-            <li>Two</li>
-            <li>Three</li>
-            <li id="last">Four</li>
-        </ul>
+        <div id="optionwrapper">
+          <h4 id="response"></h4>
+          <h4 id="responsem"></h4>
+          <ul id="options">
+              <li id="first">One</li>
+              <li>Two</li>
+              <li>Three</li>
+              <li id="last">Four</li>
+          </ul>
+        </div>
         <script src="WHSRPG.js"></script>
     </body>
 </html>

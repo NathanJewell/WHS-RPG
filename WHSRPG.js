@@ -34,20 +34,15 @@ function sleep( sleepDuration ){
     while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
 }
 
-wait = function(string, stime) {
-  var appendage = "";
-  var ctime = 0;
-  while(ctime < stime*2)
-  {
-    console.log("before");
-    setTimeout(function() {
-      if(appendage == "...") {appendage = "";} else {appendage = "..."}
-      ctime++;
-      $("#status").html(string+appendage);
-    }, 500);
-    console.log("after");
+last = true;
+respond = function(string) {
+  if(last) {
+    $("#response").html(string);
+    last = false;
+  } else {
+    $("#responsem").html(string);
+    last = true;
   }
-  $("#status").html("");
 }
 function shuffle(array) {       //copy pasterino Fisher-Yates "Knuth" Shuffle http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -120,19 +115,20 @@ startFight = function() {
 };
 
 monsterAttack = function() {
-    $("#response").html("");
     var moves = Object.keys(currentMonster.moves);
     var movekey = moves[Math.floor(Math.random() * moves.length)];
     var moveval = currentMonster.moves[movekey];
     var dmg = damageValue(moveval);
     var responseString = effectString(currentMonster.name, movekey, dmg.string, dmg.damage);
-    $("#response").html(responseString);
+    respond(responseString);
     player.health -= dmg.damage;
-    $("#playerhealth").html("phealth " + player.health);
+    $("#playerhealth").html("Player : " + player.health);
+    $("#monsterhealth").html("Monster : " + currentMonsterHealth);
     //update healthbar
     if(player.health <= 0)
     {
         alert("You were defeated by " + currentMonster.name + ". Oh no. Try again?");
+        location.reload();
         //refresh page
     }
 };
@@ -140,8 +136,10 @@ monsterAttack = function() {
 startRoam = function(player) {
     option = randomJSON(roamjects);
     currentObject = option;
-    makeHeader(option.name, "", "", option.description);
+
+    makeHeader(option.name, " ", " ", option.description);
     makeOptions(option.moves);
+    $("#monsterhealth").html("Monster: n/a")
 };
 
 startFight();
@@ -152,30 +150,37 @@ response = function(option) {
     if(state == "fight") {
         var dmg = damageValue(currentOptions[option.html()]);
         var responseString = effectString("You", option.html(), dmg.string, dmg.damage);
-        $("#response").html(responseString);
+        respond(responseString);
         currentMonsterHealth -= dmg.damage;
-        $("#monsterhealth").html("mhealth " + currentMonsterHealth);
+        $("#monsterhealth").html("Monster : " + currentMonsterHealth);
         console.log(currentMonsterHealth);
-        if(currentMonsterHealth <= 0) {
-            alert("You defeated " + currentMonster.name + "! Back to exploring!");
-            wait("Going to the hall", 3);
-            state = "roam";
-            startRoam();
-        } else {
+
+        if (currentMonsterHealth > 0){
           console.log("here");
-          wait(currentMonster.name + " is attacking ", 2);
           monsterAttack();
         }
     } else if (state == "roam") {
 
         var responses = currentObject.moves[option.html()].split("|");
+        console.log(responses);
         var responseString = responses[0];
         var dmg = damageValue(responses[1]);
         player.health += dmg.damage;
         $("#playerhealth").html("phealth " + player.health)
-        $("#response").html(responseString + " You gain " + dmg.damage + " health.")
-
+        respond(responseString + " You gain " + dmg.damage + " health.")
+        //need to pause here somehow
+        startFight();
+        monsterAttack();
+        state = "fight";
     }
+    if(currentMonsterHealth <= 0) {
+        alert("You defeated " + currentMonster.name + "! Back to exploring!");
+        state = "roam";
+        respond("");
+        respond("");
+        startRoam();
+        currentMonsterHealth = 100;
+      }
     //process clicked option response
 }
 
