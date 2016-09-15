@@ -30,6 +30,7 @@ var player =
 };
 
 var responses = [];
+var fought = ["noone", "someone"];
 
 function sleep( sleepDuration ){
     var now = new Date().getTime();
@@ -115,6 +116,10 @@ randomJSON = function(json) {   //selects random first layer key from json array
 
 startFight = function() {
     var monster = randomJSON(monsterJSON);
+
+    while(fought.indexOf(monster.name) != -1) {
+      monster = randomJSON(monsterJSON);
+    }
     currentMonsterHealth = 100;
     makeHeader(monster.name, monster.type, monster.room, monster.description);
     var responses = monster.responses;
@@ -143,7 +148,8 @@ monsterAttack = function() {
     //update healthbar
     if(player.health <= 0)
     {
-        alert("You were defeated by " + currentMonster.name + ". Oh no. Try again?");
+        respond("You were defeated by " + currentMonster.name + ". Oh no. Trying again.", "message");
+        alert("You were defeated by " + currentMonster.name + ". Oh no. Trying again.");
         location.reload();
         //refresh page
     }
@@ -156,7 +162,7 @@ startRoam = function() {
 
     makeHeader(option.name, "----------", "----------", option.description);
     makeOptions(option.moves);
-    $("#monsterhealth").html("Monster: n/a")
+    $("#monsterhealth").html("Monster: n/a");
 };
 
 
@@ -191,11 +197,18 @@ response = function(option) {
         state = "fight";
     }
     if(currentMonsterHealth <= 0) {
-        alert("You defeated " + currentMonster.name + "! Back to exploring!");
+        respond("You defeated " + currentMonster.name + "! Back to exploring!", "message");
+        fought.push(currentMonster.name);
         state = "roam";
         startRoam();
         currentMonsterHealth = 100;
+        if(fought.length == Object.keys(monsterJSON).length) {
+          respond("Wow, nice job, you WON!!!!", "message");
+          respond("Created by Nathan Jewell, Charlie Hall, Simon Prosser, and Eugene Munblit!!!", "message");
+          //location.reload();
+        }
       }
+
 
     //process clicked option response
 }

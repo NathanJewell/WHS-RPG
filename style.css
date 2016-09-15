@@ -148,6 +148,10 @@ li {
 .health {
     color: #00d700;
 }
+
+.message {
+	color: #d0d0d0;
+}
 /*
 li#first:before {
 	content: "╭ ";
