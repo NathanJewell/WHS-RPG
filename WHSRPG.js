@@ -30,7 +30,7 @@ var player =
 };
 
 var responses = [];
-var fought = ["noone", "someone"];
+var fought = ["noone"];
 
 function sleep( sleepDuration ){
     var now = new Date().getTime();
@@ -165,7 +165,8 @@ startRoam = function() {
     $("#monsterhealth").html("Monster: n/a");
 };
 
-
+respond("Welcome to Woodrow Wilson High School RPG!!", "message");
+respond("Remember to win and not to lose! GOOD LUCK!", "message");
 var state = "roam";
 startRoam();
 
