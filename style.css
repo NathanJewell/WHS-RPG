@@ -69,12 +69,34 @@ body {
 	width: 200px;
 }
 
+#wwrapper {
+    margin-top: 5%;
+}
+
+#actiontitle, #responsetitle {
+    font-size: 30px;
+}
 #optionwrapper {
 	background-color: #232323;
-	width: 50%;
-	padding: 50px;
-	display: inline-block;
+	width: 30%;
+    height: 500px;
+	padding: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    float: left;
+    overflow: hidden;
 	text-align: center;
+}
+
+#responsewrapper {
+    background-color: #232323;
+    width: 30%;
+    height: 500px;
+    padding: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    overflow: hidden;
 }
 
 ul {
@@ -86,33 +108,45 @@ ul {
 	text-align: center;
 }
 
-ul:before {
-	content: "actions:";
-	margin-bottom: 20px;
-	font-weight: bold;
-}
-
 li {
-	cursor: pointer;
 	font-family: roboto;
-	font-size : 30px;
 	color: #00d700;
 	position: relative;
 	text-align: left;
 	margin-bottom: 15px;
 }
 
-#response, #responsem {
-	font-size: 20px;
+#responses li{
+    font-size : 20px;
+	margin-bottom: 15px;
 }
 
-li:before {
+#options li{
+    cursor: pointer;
+	font-family: roboto;
+	font-size : 30px;
+	margin-bottom: 15px;
+}
+
+#options li:before {
 	/*content: "├ ";*/
-	content: "->        "
+	content: "-> "
 }
 
-li:hover {
+#options li:hover {
 	color: #00a400;
+}
+
+.damage{
+    color: #ff0000;
+}
+
+.attack{
+    color: #00c5ff;
+}
+
+.health {
+    color: #00d700;
 }
 /*
 li#first:before {

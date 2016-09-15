@@ -29,21 +29,26 @@ var player =
     }
 };
 
+var responses = [];
+
 function sleep( sleepDuration ){
     var now = new Date().getTime();
     while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
 }
 
-last = true;
-respond = function(string) {
-  if(last) {
-    $("#response").html(string);
-    last = false;
-  } else {
-    $("#responsem").html(string);
-    last = true;
-  }
+respond = function(string, type) {
+    responses.push({str: string, cls: type});
+    if(responses.length > 6)
+    {
+        responses.shift();
+    }
+    $("#responses").empty();
+    for(i = 0; i < responses.length; i++) {
+        var obj = responses[i];
+        $("<li class=\"" + obj.cls  + "\">" + obj.str + "</li>").appendTo("#responses");
+    }
 }
+
 function shuffle(array) {       //copy pasterino Fisher-Yates "Knuth" Shuffle http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   var currentIndex = array.length, temporaryValue, randomIndex;
   // While there remain elements to shuffle...
@@ -83,12 +88,23 @@ makeHeader = function(name, clss, room, descrip) {
 makeOptions = function(options) {
     currentOptions = options;
     var keys = Object.keys(options);
+    $("#options").empty();
     shuffle(keys);
+    for(i = 0; i < keys.length; i++) {
+
+        $("<li>" + keys[i] + "</li>").appendTo("#options");
+    }
+    $("#options li").click(function() {
+        response($(this));
+    });
+
+    /*
     $("#options li").each(function(index, li) {   //iterate through list elements
         console.log(index);
         var item = $(this);
         item.html(keys[index]);
     });
+    */
 };
 
 randomJSON = function(json) {   //selects random first layer key from json array
@@ -120,7 +136,7 @@ monsterAttack = function() {
     var moveval = currentMonster.moves[movekey];
     var dmg = damageValue(moveval);
     var responseString = effectString(currentMonster.name, movekey, dmg.string, dmg.damage);
-    respond(responseString);
+    respond(responseString, "damage");
     player.health -= dmg.damage;
     $("#playerhealth").html("Player : " + player.health);
     $("#monsterhealth").html("Monster : " + currentMonsterHealth);
@@ -133,41 +149,42 @@ monsterAttack = function() {
     }
 };
 
-startRoam = function(player) {
+startRoam = function() {
+    $("#playerhealth").html("Player: " + player.health);
     option = randomJSON(roamjects);
     currentObject = option;
 
-    makeHeader(option.name, " ", " ", option.description);
+    makeHeader(option.name, "----------", "----------", option.description);
     makeOptions(option.moves);
     $("#monsterhealth").html("Monster: n/a")
 };
 
-startFight();
-monsterAttack();
-var state = "fight";
+
+var state = "roam";
+startRoam();
 
 response = function(option) {
     if(state == "fight") {
         var dmg = damageValue(currentOptions[option.html()]);
         var responseString = effectString("You", option.html(), dmg.string, dmg.damage);
-        respond(responseString);
+        respond(responseString, "attack");
         currentMonsterHealth -= dmg.damage;
         $("#monsterhealth").html("Monster : " + currentMonsterHealth);
         console.log(currentMonsterHealth);
 
+
         if (currentMonsterHealth > 0){
-          console.log("here");
           monsterAttack();
         }
-    } else if (state == "roam") {
+    }
+    if (state == "roam") {
 
-        var responses = currentObject.moves[option.html()].split("|");
-        console.log(responses);
-        var responseString = responses[0];
-        var dmg = damageValue(responses[1]);
+        var response = currentObject.moves[option.html()].split("|");
+        var responseString = response[0];
+        var dmg = damageValue(response[1]);
         player.health += dmg.damage;
-        $("#playerhealth").html("phealth " + player.health)
-        respond(responseString + " You gain " + dmg.damage + " health.")
+        $("#playerhealth").html("Player: " + player.health)
+        respond(responseString + " You gain " + dmg.damage + " health.", "health")
         //need to pause here somehow
         startFight();
         monsterAttack();
@@ -176,14 +193,9 @@ response = function(option) {
     if(currentMonsterHealth <= 0) {
         alert("You defeated " + currentMonster.name + "! Back to exploring!");
         state = "roam";
-        respond("");
-        respond("");
         startRoam();
         currentMonsterHealth = 100;
       }
+
     //process clicked option response
 }
-
-$("#options li").click(function() {
-    response($(this));
-});
